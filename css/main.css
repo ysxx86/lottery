@@ -1,7 +1,7 @@
 body {
     font-family: 'Microsoft YaHei', sans-serif;
-    padding: 20px;
-    max-width: 1200px;
+    /*padding: 20px;
+    max-width: 1200px;*/
     margin: 0 auto;
     background-color: #f5f5f5;             /* 改变背景色 */
 }
@@ -67,6 +67,7 @@ button:hover {
 }
 .controls {
     margin: 20px 0;
+    margin-left: 200px;
 }
 .reset-btn {
     background-color: #ff9800;
@@ -193,11 +194,11 @@ button:hover {
 /* 修改排行榜样式 */
 .leaderboard {
     position: fixed;
-    left: 20px;           /* 改回左侧定位 */
+    /*left: 20px;   */        /* 改回左侧定位 */
     right: auto;          /* 移除右侧定位 */
     top: 50%;
     transform: translateY(-50%);
-    width: 200px;
+    width: 150px;
     background: #fff;
     border: 2px solid gold;
     border-radius: 10px;
@@ -280,9 +281,9 @@ button:hover {
 
 /* 修改主内容区域布局 */
 .main-content {
-    margin-left: 180px;  /* 减小左边距 */
+    /*margin-left: 180px;/* 减小左边距 */
     margin-right: 20px;  /* 添加右边距 */
-    padding: 0 20px;     /* 添加内边距 */
+    /*padding: 0 20px;     添加内边距 */
 }
 .sun {
     color: #FFD700;
@@ -300,6 +301,7 @@ button:hover {
 h2 {
     margin-top: 0;        /* 移除顶部边距 */
     padding-top: 20px;    /* 添加顶部内边距 */
+    margin-left: 200px;
 }
 .lock-btn {
     position: fixed;
@@ -797,13 +799,29 @@ h2 {
 }
 
 /* 添加中央锁定按钮样式 */
-.center-lock-btn {
+/*.center-lock-btn {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    background-color: #4CAF50;  /* 使用相同的绿色 */
+    background-color: #4CAF50;  
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;  
+} */
+.center-reset-pwd-btn {
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #ff9800;  /* 使用相同的绿色 */
     color: white;
     padding: 20px 40px;
     font-size: 24px;
@@ -813,12 +831,33 @@ h2 {
     cursor: pointer;
     animation: pulse 2s infinite;  /* 添加呼吸效果 */
 }
+/* .center-reset-pwd-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(10%, -50%);
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+} */
+.locked-state .center-reset-pwd-btn {
+    display: block;
+}
+
+.unlocked-state .center-reset-pwd-btn {
+    display: none;
+}
 
 /* 添加中央解锁按钮样式 */
 .center-unlock-btn {
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: 40%;
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: #4CAF50;  /* 使用绿色表示解锁 */
