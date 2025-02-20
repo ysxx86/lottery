@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>积分抽奖</title>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="css/lottery.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="header-info">
+                <button class="back-btn" onclick="window.location.href='index.html'">返回</button>
+                <div class="student-info">当前抽奖学生：<span id="currentStudent"></span></div>
+                <button class="export-btn" onclick="exportWinningRecords()">导出获奖记录</button>
+            </div>
+            <h1>积分抽奖系统</h1>
+            <div class="score-display">
+                <div class="score-input-group">
+                    积分：<input type="number" id="scoreInput" min="0" max="999" value="300">
+                    <button id="updateScoreBtn">确认修改</button>
+                </div>
+                <div class="current-score">
+                    当前积分：<span id="currentScore">300</span>
+                </div>
+            </div>
+            <div class="global-result">
+                <div class="final-result" id="finalResult"></div>
+            </div>
+            <div class="rolling-container" id="rollingContainer">
+                <div class="prize-roll" id="prizeRoll"></div>
+            </div>
+            <div class="lottery-sections">
+                <div class="section primary">
+                    <div class="cost-tag">50积分</div>
+                    <h2>初级奖池</h2>
+                    <p class="prize-desc">奖品：<span id="level1-prizes"></span></p>
+                    <div class="button-group">
+                        <button onclick="drawPrize(1)">开始</button>
+                        <button class="edit-btn" onclick="showEditPrizes(1)">编辑奖品</button>
+                    </div>
+                </div>
+                <div class="section intermediate">
+                    <div class="cost-tag">100积分</div>
+                    <h2>中级奖池</h2>
+                    <p class="prize-desc">奖品：<span id="level2-prizes"></span></p>
+                    <div class="button-group">
+                        <button onclick="drawPrize(2)">开始</button>
+                        <button class="edit-btn" onclick="showEditPrizes(2)">编辑奖品</button>
+                    </div>
+                </div>
+                <div class="section advanced">
+                    <div class="cost-tag">150积分</div>
+                    <h2>高级奖池</h2>
+                    <p class="prize-desc">奖品：<span id="level3-prizes"></span></p>
+                    <div class="button-group">
+                        <button onclick="drawPrize(3)">开始</button>
+                        <button class="edit-btn" onclick="showEditPrizes(3)">编辑奖品</button>
+                    </div>
+                </div>
+            </div>
+            <div class="winning-records" style="display: none;">
+                <h2>今日获奖记录</h2>
+                <div class="records-list" id="winningRecordsList"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3>编辑奖品</h3>
+            <p>每行输入一个奖品名称（最多6个）：</p>
+            <textarea id="prizeInput" rows="6"></textarea>
+            <div class="modal-buttons">
+                <button onclick="savePrizes()">保存</button>
+                <button onclick="closeEditModal()">取消</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/lottery.js"></script>
+</body>
+</html>
