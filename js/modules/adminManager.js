@@ -352,6 +352,13 @@ function submitSystemPasswordChange() {
     closeSystemPasswordModal();
 }
 
+// 重置系统密码为默认值
+function resetSystemPassword() {
+    UNLOCK_PASSWORD = '2020503';
+    localStorage.setItem('systemPassword', '2020503');
+    showAlert('✅ 系统密码已重置为：2020503');
+}
+
 // 添加回车键提交支持
 document.getElementById('confirmSystemPassword').addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
