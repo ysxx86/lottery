@@ -1,0 +1,1132 @@
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;             /* 改变背景色 */
+}
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);  /* 6列等宽 */
+    gap: 20px;                              /* 增加间距 */
+    margin: 20px auto;
+    padding: 15px;                          /* 添加内边距 */
+    max-width: 1600px;                      /* 限制最大宽度 */
+}
+.student-card {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;                 /* 使用纯白背景 */
+    min-height: 140px; /* 减小卡片高度使一页能显示6行 */
+    width: 100%;     /* 确保卡片占满网格单元格 */
+    box-sizing: border-box;  /* 包含padding和border在内的总宽度 */
+    min-width: 240px; /* 确保最小宽度 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 添加阴影效果 */
+    transition: all 0.3s ease;              /* 添加过渡效果 */
+    position: relative;
+}
+.student-card:hover {
+    transform: translateY(-2px);            /* 悬停时轻微上浮 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.score-input {
+    width: 60px;
+    margin: 5px 0;
+    padding: 3px;
+}
+.button-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+button {
+    cursor: pointer;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.add-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+.subtract-btn {
+    background-color: #f44336;
+    color: white;
+}
+button:hover {
+    opacity: 0.8;
+}
+.total-score {
+    font-weight: bold;
+    color: #2196F3;
+    margin: 0;  /* 移除原有边距 */
+    border-bottom: 1px solid #e0e0e0;  /* 添加分隔线 */
+    padding-bottom: 3px;  /* 分隔线与文字的间距 */
+}
+.controls {
+    margin: 20px 0;
+}
+.reset-btn {
+    background-color: #ff9800;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+.sort-btn {
+    background-color: #2196F3;
+    color: white;
+    padding: 8px 16px;
+}
+.student-name {
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 3px;
+    word-break: break-all;  /* 允许长文本在任意字符处换行 */
+    min-height: 24px;      /* 确保名字区域高度一致 */
+}
+.student-name:hover {
+    background-color: #e0e0e0;
+}
+.clear-storage-btn {
+    background-color: #9c27b0;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+.student-number {
+    color: #666;
+    margin-right: 5px;
+}
+.history-log {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+.export-btn, .import-btn, .restore-order-btn {
+    background-color: #607d8b;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+}
+.history-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 添加历史记录按钮和弹窗样式 */
+.history-btn {
+    background-color: #795548;
+    color: white;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.history-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.history-modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.history-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+.score-display {
+    display: flex;
+    flex-direction: column;  /* 改为纵向排列 */
+    margin: 5px 0;
+}
+.score-symbol {
+    display: grid;
+    grid-template-columns: repeat(10, 18px); /* 稍微减小符号大小 */
+    gap: 1px;
+    margin-top: 2px;
+    min-height: 30px;
+    font-size: 12px;
+    justify-content: center;
+}
+.star, .moon, .sun {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+}
+
+/* 修改排行榜样式 */
+.leaderboard {
+    position: fixed;
+    left: 20px;           /* 改回左侧定位 */
+    right: auto;          /* 移除右侧定位 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    background: #fff;
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.leaderboard-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.rank-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.rank-number {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.rank-1 .rank-number { 
+    background: gold;
+    color: #fff;
+}
+.rank-1 .rank-crown {
+    color: gold;
+    margin-left: 5px;
+}
+
+.rank-2 .rank-number {
+    background: silver;
+    color: #fff;
+}
+.rank-2 .rank-crown {
+    color: silver;
+    margin-left: 5px;
+}
+
+.rank-3 .rank-number {
+    background: #cd7f32;
+    color: #fff;
+}
+.rank-3 .rank-crown {
+    color: #cd7f32;
+    margin-left: 5px;
+}
+
+.rank-4 .rank-number,
+.rank-5 .rank-number {
+    background: #808080;
+    color: #fff;
+}
+
+.rank-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rank-score {
+    margin-left: 10px;
+    color: #2196F3;
+    font-weight: bold;
+}
+
+/* 修改主内容区域布局 */
+.main-content {
+    margin-left: 180px;  /* 减小左边距 */
+    margin-right: 20px;  /* 添加右边距 */
+    padding: 0 20px;     /* 添加内边距 */
+}
+.sun {
+    color: #FFD700;
+    font-size: 18px;
+}
+.moon {
+    color: #7986CB;
+    font-size: 16px;
+}
+.star {
+    color: #FFD700;
+    font-size: 16px;
+}
+/* 调整标题区域样式 */
+h2 {
+    margin-top: 0;        /* 移除顶部边距 */
+    padding-top: 20px;    /* 添加顶部内边距 */
+}
+.lock-btn {
+    position: fixed;
+    top: 20px;          /* 固定在顶部 */
+    right: 20px;        /* 固定在右侧 */
+    background-color: #FF5722;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1000;      /* 确保按钮在最上层 */
+}
+
+.lock-btn.locked {
+    background-color: #607D8B;
+}
+
+/* 禁用状态样式 */
+.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* 添加密码弹窗样式 */
+.password-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 300px;
+}
+
+.password-input {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.password-input:focus {
+    border-color: #2196F3;
+}
+
+.password-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.password-btn {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.password-submit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.password-cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+.password-title {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+}
+
+/* 统一弹窗样式 */
+.modal-base {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-base {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+
+.modal-title {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.modal-btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.modal-btn-secondary {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content {
+    margin: 15px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 添加输入框样式 */
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.modal-input:focus {
+    border-color: #2196F3;
+}
+
+/* 修改历史记录内容样式 */
+.history-item {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    margin: 5px 0;
+}
+
+/* 添加积分区间颜色样式 */
+.score-0-100 {
+    color: #2196F3;  /* 蓝色 */
+}
+
+.score-100-500 {
+    color: #FF9800;  /* 橙色 */
+}
+
+.score-500-1000 {
+    color: #F44336;  /* 红色 */
+}
+
+/* 添加响应式布局样式 */
+@media screen and (max-width: 1024px) {
+    .student-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;  /* 移动端移除左边距 */
+    }
+
+    .leaderboard {
+        display: none; /* 隐藏固定排行榜 */
+    }
+
+    /* 添加移动端排行榜样式 */
+    .mobile-leaderboard {
+        display: block;
+        margin: 20px 0;
+        background: #fff;
+        border: 2px solid gold;
+        border-radius: 10px;
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .student-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .controls button {
+        flex: 1;
+        min-width: 150px;
+        margin: 0;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    .modal-content-base {
+        width: 90%;
+        margin: 0 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .student-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .student-card {
+        min-width: unset;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .controls button {
+        padding: 6px 12px;
+        font-size: 14px;
+        min-width: unset;
+    }
+}
+
+/* 添加触摸设备优化 */
+@media (hover: none) {
+    .student-card:hover {
+        transform: none;
+    }
+
+    button {
+        padding: 8px 16px; /* 增大按钮点击区域 */
+    }
+
+    .student-name {
+        padding: 6px;  /* 增大名字点击区域 */
+    }
+}
+
+/* 修改排行榜显示逻辑 */
+.mobile-leaderboard {
+    display: none;
+}
+
+@media screen and (min-width: 1025px) {
+    .mobile-leaderboard {
+        display: none;
+    }
+    .leaderboard {
+        display: block;
+    }
+}
+
+/* 添加二维码按钮和弹窗样式 */
+.qr-btn {
+    background-color: #9C27B0;
+    color: white;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.qr-modal .modal-content-base {
+    width: 300px;
+    padding: 20px;
+}
+
+#qrcode {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.qr-instructions {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .qr-btn {
+        display: none; /* 在移动设备上隐藏二维码按钮 */
+    }
+}
+
+/* 添加修改密码按钮样式 */
+.change-password-btn {
+    background-color: #673AB7;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+
+/* 添加系统提示弹窗特殊样式 */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.system-alert .modal-content-base {
+    border-left: 5px solid #4CAF50;
+    max-width: 400px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.system-alert.warning .modal-content-base {
+    border-left: 5px solid #ff9800;
+}
+
+.system-alert .modal-title {
+    color: #4CAF50;
+    font-size: 20px;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.system-alert.warning .modal-title {
+    color: #ff9800;
+}
+
+.system-alert .modal-content {
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.system-alert .modal-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* 添加新增学生卡片样式 */
+.add-student-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-student-card:hover {
+    background-color: #e0e0e0;
+}
+
+.add-icon {
+    font-size: 40px;
+    color: #666;
+}
+
+/* 添加删除按钮样式 */
+.delete-student-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    background-color: #f44336;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.student-card:hover .delete-student-btn {
+    opacity: 1;
+}
+
+.admin-btn {
+    background-color: #673AB7;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+
+.admin-only {
+    display: none;  /* 默认隐藏管理员功能 */
+}
+
+.admin-mode .admin-only {
+    display: inline-block;  /* 管理员模式下显示 */
+}
+
+/* 添加管理员模式下的删除按钮样式 */
+.delete-student-btn {
+    display: none; /* 默认隐藏删除按钮 */
+}
+
+.admin-mode .delete-student-btn {
+    display: flex; /* 管理员模式下显示删除按钮 */
+}
+
+/* 添加卡片在非管理员模式下的样式 */
+.add-student-card {
+    display: none; /* 默认隐藏添加卡片 */
+}
+
+.admin-mode .add-student-card {
+    display: flex; /* 管理员模式下显示添加卡片 */
+}
+
+/* 添加中央锁定按钮样式 */
+.center-lock-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #4CAF50;  /* 使用相同的绿色 */
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;  /* 添加呼吸效果 */
+}
+
+/* 添加中央解锁按钮样式 */
+.center-unlock-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #4CAF50;  /* 使用绿色表示解锁 */
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+    display: none;  /* 默认隐藏 */
+}
+
+/* 添加按钮呼吸动画效果 */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+}
+
+/* 添加锁定状态下的内容样式 */
+.locked-state .main-content,
+.locked-state .leaderboard,
+.locked-state .mobile-leaderboard,
+.locked-state .qr-btn,
+.locked-state .controls {
+    filter: blur(5px);
+    opacity: 0.5;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.locked-state .center-lock-btn {
+    display: block;
+}
+
+.unlocked-state .center-lock-btn {
+    display: none;
+}
+
+/* 添加锁定状态样式 */
+.locked .main-content,
+.locked .leaderboard {
+    filter: blur(3px);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.locked-state .center-unlock-btn {
+    display: block;
+}
+
+/* 修改提示框样式确保在最顶层 */
+.system-alert {
+    z-index: 9999 !important; /* 确保在最顶层 */
+}
+
+.system-alert .modal-content-base {
+    position: fixed;
+    top: 50px;  /* 固定在顶部 */
+    left: 50%;
+    transform: translateX(-50%);
+    animation: slideDown 0.3s ease;
+    border-left: 5px solid #4CAF50;
+    max-width: 400px;
+    width: 90%;
+}
+
+/* 添加动画效果 */
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+.system-password-btn {
+    background-color: #009688;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+
+/* 修改移动端布局样式 */
+@media screen and (max-width: 768px) {
+    .student-grid {
+        grid-template-columns: repeat(3, 1fr); /* 修改为3列布局 */
+        gap: 10px; /* 减小间距 */
+    }
+
+    .student-card {
+        min-height: 120px; /* 减小卡片高度 */
+        padding: 10px; /* 减小内边距 */
+    }
+
+    .score-input {
+        width: 50px; /* 减小输入框宽度 */
+        height: 24px; /* 减小输入框高度 */
+    }
+
+    .button-group button {
+        padding: 4px 8px; /* 减小按钮内边距 */
+        font-size: 12px; /* 减小按钮字体大小 */
+    }
+
+    .history-btn {
+        font-size: 11px; /* 减小历史记录按钮字体大小 */
+        padding: 3px 6px; /* 减小历史记录按钮内边距 */
+    }
+
+    /* 在移动端隐藏积分符号 */
+    .score-symbol {
+        display: none;
+    }
+
+    /* 优化积分显示 */
+    .total-score {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .student-name {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+}
+
+/* 针对6.1寸屏幕的优化 */
+@media screen and (max-width: 428px) { /* iPhone 12 Pro Max/13 Pro Max 宽度 */
+    .student-grid {
+        grid-template-columns: repeat(2, 1fr); /* 改为2列布局 */
+    }
+
+    .student-card {
+        min-height: 110px;
+    }
+}
+
+/* 优化移动端布局和交互样式 */
+@media screen and (max-width: 768px) {
+    .student-card {
+        min-height: 140px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .student-name {
+        font-size: 15px;
+        margin-bottom: 8px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .total-score {
+        font-size: 16px;
+        margin: 8px 0;
+        text-align: center;
+        padding: 4px 0;
+    }
+
+    .score-input {
+        width: 60px;
+        height: 32px;
+        font-size: 16px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .button-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .add-btn, .subtract-btn {
+        height: 40px;
+        font-size: 20px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+    }
+
+    .history-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 12px;
+        background-color: #607d8b;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.8;
+    }
+
+    /* 优化移动端按钮触摸反馈 */
+    @media (hover: none) {
+        .add-btn:active, .subtract-btn:active, .history-btn:active {
+            transform: scale(0.95);
+            transition: transform 0.1s;
+        }
+    }
+
+    /* 优化移动端控制栏 */
+    .controls {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 100;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .controls button {
+        flex: 1;
+        min-width: 100px;
+        height: 36px;
+        font-size: 14px;
+        white-space: nowrap;
+        padding: 0 12px;
+    }
+
+    /* 优化移动端排行榜 */
+    .mobile-leaderboard {
+        margin: 15px 0;
+        padding: 12px;
+    }
+
+    .rank-item {
+        padding: 8px 12px;
+        margin: 5px 0;
+        border-radius: 6px;
+    }
+
+    .rank-number {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .rank-name {
+        font-size: 15px;
+    }
+
+    .rank-score {
+        font-size: 16px;
+    }
+}
+
+/* 针对更小屏幕的优化 */
+@media screen and (max-width: 428px) {
+    .student-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .student-card {
+        margin-bottom: 5px;
+    }
+
+    .controls button {
+        min-width: 80px;
+        font-size: 13px;
+    }
+}
+
+/* 添加按钮按下反馈效果 */
+.add-btn:active, .subtract-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+/* 添加输入框激活状态样式 */
+.score-input:focus {
+    border-color: #2196F3;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}

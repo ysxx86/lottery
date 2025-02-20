@@ -1,0 +1,379 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 1;
+    text-align: center;
+}
+
+.winning-records {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.winning-records h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.record-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-left: 4px solid #3498db;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.record-item .time {
+    color: #666;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.record-item .student {
+    font-weight: bold;
+    color: #2c3e50;
+    white-space: nowrap;
+}
+.record-item .prize {
+    color: #e74c3c;
+    white-space: nowrap;
+}
+.header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.export-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.export-btn:hover {
+    background: #219a52;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.lottery-sections {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    padding: 0 20px;
+}
+.section {
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 15px;
+    width: 30%;
+    display: none;
+    transition: all 0.3s ease;
+    margin: 0 15px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 15px;
+    margin-top: 20px;
+}
+.section.primary {
+    border-color: #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
+}
+.section.intermediate {
+    border-color: #f1c40f;
+    background-color: rgba(241, 196, 15, 0.1);
+}
+.section.advanced {
+    border-color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+}
+.section.visible {
+    display: block;
+}
+/* 呼吸动画效果 */
+@keyframes breathe {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(0,0,0,0); }
+    50% { transform: scale(1.03); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+.section:hover {
+    animation: breathe 1.5s ease-in-out infinite;
+}
+.section.primary:hover {
+    box-shadow: 0 0 20px rgba(39, 174, 96, 0.2);
+}
+.section.intermediate:hover {
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.2);
+}
+.section.advanced:hover {
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.2);
+}
+/* 积分标签样式 */
+.cost-tag {
+    position: absolute;
+    top: 20px;
+    left: -35px;
+    background: linear-gradient(135deg, #ffd700, #ffb900);
+    padding: 5px 40px;
+    transform: rotate(-45deg);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.cost-tag::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.2) 50%,
+        rgba(255,255,255,0) 100%);
+    animation: shine 2s infinite;
+}
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+.section.primary .cost-tag {
+    background: linear-gradient(135deg, #ffd700, #27ae60);
+}
+.section.intermediate .cost-tag {
+    background: linear-gradient(135deg, #ffd700, #f1c40f);
+}
+.section.advanced .cost-tag {
+    background: linear-gradient(135deg, #ffd700, #e74c3c);
+}
+/* 滚动效果 */
+.prize-roll {
+    height: 60px;
+    overflow: hidden;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 100%;
+    position: relative;
+    background: #fff;
+}
+.prize-roll::before,
+.prize-roll::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    z-index: 1;
+    pointer-events: none;
+}
+.prize-roll::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.prize-roll::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.prize-container {
+    transition: transform 0.1s;
+}
+.prize-item {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 24px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+@keyframes rollAnimation {
+    0% { transform: translateY(60px); }
+    100% { transform: translateY(-60px); }
+}
+.rolling {
+    animation: rollAnimation 0.2s linear infinite;
+}
+/* 编辑功能样式 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.edit-btn {
+    background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
+    font-size: 14px;
+    padding: 5px 10px;
+}
+.edit-btn:hover {
+    background: linear-gradient(to bottom, #7f8c8d, #6c7a7d);
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+.modal-content {
+    background-color: #fff;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+#prizeInput {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 16px;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+/* 按钮样式美化 */
+button {
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+button:hover {
+    background: linear-gradient(to bottom, #2980b9, #2472a4);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+#updateScoreBtn {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+}
+#updateScoreBtn:hover {
+    background: linear-gradient(to bottom, #27ae60, #219d55);
+}
+.modal-buttons button {
+    padding: 8px 15px;
+}
+.modal-buttons button:last-child {
+    background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
+}
+.modal-buttons button:last-child:hover {
+    background: linear-gradient(to bottom, #7f8c8d, #6c7a7d);
+}
+button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+/* 中奖信息样式优化 */
+.global-result {
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+}
+.final-result {
+    margin: 0 auto;
+    padding: 15px 30px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 152, 219, 0.1));
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    transform: scale(0.95);
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+.final-result.show {
+    opacity: 1;
+    transform: scale(1);
+    height: auto;
+    margin: 10px auto;
+}
+.final-result div:first-child {
+    font-size: 28px;
+    color: #e74c3c;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    animation: prize-glow 2s ease-in-out infinite;
+}
+.final-result div:nth-child(2) {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+.final-result div:last-child {
+    font-size: 20px;
+    color: #27ae60;
+}
+@keyframes prize-glow {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); color: #c0392b; }
+    100% { transform: scale(1); }
+}
+.prize-area {
+    margin: 15px auto;
+    max-width: 180px;
+}
+.rolling-container {
+    display: none;
+    max-width: 300px;
+    margin: 20px auto;
+}
+.prize-roll {
+    height: 60px;
+    width: 100%;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    background: #fff;
+    margin: 0 auto;
+}
