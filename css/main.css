@@ -2027,7 +2027,7 @@ h2 {
 .center-unlock-btn {
     position: fixed;
     top: 50%;
-    left: 60%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: #4CAF50;  /* 使用绿色表示解锁 */
