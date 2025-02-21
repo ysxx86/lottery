@@ -1452,25 +1452,6 @@ h2 {
     display: none;
 }
 
-/* 添加中央解锁按钮样式 */
-.center-unlock-btn {
-    position: fixed;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: #4CAF50;  /* 使用绿色表示解锁 */
-    color: white;
-    padding: 20px 40px;
-    font-size: 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    border: none;
-    cursor: pointer;
-    animation: pulse 2s infinite;
-    display: none;  /* 默认隐藏 */
-}
-
 /* 添加按钮呼吸动画效果 */
 @keyframes pulse {
     0% {
@@ -2046,7 +2027,7 @@ h2 {
 .center-unlock-btn {
     position: fixed;
     top: 50%;
-    left: 40%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: #4CAF50;  /* 使用绿色表示解锁 */
