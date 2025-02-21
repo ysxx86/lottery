@@ -35,6 +35,7 @@
             <button class="reset-btn admin-only" onclick="resetAllScores()">重置所有积分</button>
             <button class="sort-btn" onclick="sortStudents()">按积分排序</button>
             <button class="restore-order-btn" onclick="restoreOriginalOrder()">恢复默认排序</button>
+            <button class="toggle-leaderboard-btn" onclick="toggleLeaderboard()">排行榜</button>
             <button class="export-btn admin-only" onclick="exportToExcel()">导出到Excel</button>
             <button class="import-btn admin-only" onclick="importFromExcel()">从Excel导入</button>
             <button class="system-password-btn admin-only" onclick="handleSystemPasswordChange()">修改系统密码</button>
@@ -45,7 +46,7 @@
 
     <!-- 添加排行榜 -->
     <div class="leaderboard">
-        <div class="leaderboard-title">积分排行榜1.0</div>
+        <div class="leaderboard-title">积分排行榜</div>
         <div id="rankingList"></div>
     </div>
 

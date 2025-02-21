@@ -153,6 +153,44 @@ const updateDisplay = (students) => {
     updateLeaderboard(students);
 };
 
+// 添加排行榜显示/隐藏切换功能
+// 初始化排行榜的鼠标事件处理
+const initLeaderboardEvents = () => {
+    const leaderboard = document.querySelector('.leaderboard');
+    let isMouseOver = false;
+
+    // 点击显示排行榜
+    leaderboard.addEventListener('click', () => {
+        if (!leaderboard.classList.contains('visible')) {
+            leaderboard.classList.add('visible');
+            isMouseOver = true;
+        }
+    });
+
+    // 鼠标移入排行榜区域
+    leaderboard.addEventListener('mouseenter', () => {
+        isMouseOver = true;
+    });
+
+    // 鼠标移出排行榜区域
+    leaderboard.addEventListener('mouseleave', () => {
+        isMouseOver = false;
+        setTimeout(() => {
+            if (!isMouseOver) {
+                leaderboard.classList.remove('visible');
+            }
+        }, 200);
+    });
+};
+
+// 在页面加载完成后初始化排行榜事件
+document.addEventListener('DOMContentLoaded', initLeaderboardEvents);
+
+window.toggleLeaderboard = () => {
+    const leaderboard = document.querySelector('.leaderboard');
+    leaderboard.classList.toggle('visible');
+};
+
 // 添加页面加载时的初始化
 document.addEventListener('DOMContentLoaded', () => {
     // ...existing initialization code...
